@@ -1,5 +1,6 @@
 import React from "react";
 import Backdrop from "./Backdrop/Backdrop.tsx";
+import { IModal } from "../../../types";
 
 interface Props extends React.PropsWithChildren {
   show: boolean;
@@ -8,6 +9,20 @@ interface Props extends React.PropsWithChildren {
 }
 
 const Modal: React.FC<Props> = ({ show, title, onModalClick, children }) => {
+  const modalButtons: IModal[] = [
+    {
+      type: "primary",
+      label: "Continue",
+      onClick: () => console.log("Continue clicked"),
+    },
+    {
+      type: "danger",
+      label: "Close",
+      onClick: onModalClick,
+    },
+  ];
+
+
   return (
     <>
       <Backdrop show={show} />
@@ -20,6 +35,18 @@ const Modal: React.FC<Props> = ({ show, title, onModalClick, children }) => {
             </div>
             <div className="d-flex flex-column pt-3">
               {children}
+            </div>
+            <div className="modal-footer justify-content-center">
+              {modalButtons.map((btn, index) => (
+                <button
+                  type="button"
+                  key={index}
+                  className={`btn btn-${btn.type}`}
+                  onClick={btn.onClick}
+                >
+                  {btn.label}
+                </button>
+              ))}
             </div>
           </div>
         </div>

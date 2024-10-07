@@ -1,6 +1,6 @@
 import React from "react";
 import Backdrop from "./Backdrop/Backdrop.tsx";
-import { IModal } from "../../../types";
+import { IModalButton } from "../../../types";
 
 interface Props extends React.PropsWithChildren {
   show: boolean;
@@ -9,7 +9,7 @@ interface Props extends React.PropsWithChildren {
 }
 
 const Modal: React.FC<Props> = ({ show, title, onModalClick, children }) => {
-  const modalButtons: IModal[] = [
+  const modalButtons: IModalButton[] = [
     {
       type: "primary",
       label: "Continue",
@@ -24,7 +24,7 @@ const Modal: React.FC<Props> = ({ show, title, onModalClick, children }) => {
 
   return (
     <>
-      <Backdrop show={show} />
+      <Backdrop show={show}/>
       <div className="modal show" style={{ display: show ? "block" : "none" }}>
         <div className="modal-dialog">
           <div className="modal-content p-4">
@@ -38,8 +38,8 @@ const Modal: React.FC<Props> = ({ show, title, onModalClick, children }) => {
             <div className="modal-footer justify-content-center gap-4">
               {modalButtons.map((btn, index) => (
                 <button
-                  type="button"
                   key={index}
+                  type="button"
                   className={`btn btn-${btn.type}`}
                   onClick={btn.onClick}
                 >

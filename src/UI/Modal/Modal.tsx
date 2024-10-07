@@ -13,7 +13,7 @@ const Modal: React.FC<Props> = ({ show, title, onModalClick, children }) => {
     {
       type: "primary",
       label: "Continue",
-      onClick: () => console.log("Continue clicked"),
+      onClick: () => alert("Continue clicked"),
     },
     {
       type: "danger",
@@ -21,7 +21,6 @@ const Modal: React.FC<Props> = ({ show, title, onModalClick, children }) => {
       onClick: onModalClick,
     },
   ];
-
 
   return (
     <>
@@ -36,7 +35,7 @@ const Modal: React.FC<Props> = ({ show, title, onModalClick, children }) => {
             <div className="d-flex flex-column pt-3">
               {children}
             </div>
-            <div className="modal-footer justify-content-center">
+            <div className="modal-footer justify-content-center gap-4">
               {modalButtons.map((btn, index) => (
                 <button
                   type="button"
